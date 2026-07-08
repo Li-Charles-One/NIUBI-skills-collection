@@ -1,0 +1,43 @@
+# NIUBI Skills Collection
+
+精选优质 AI Agent Skill 合集，以 Git 子模块方式组织，方便追踪原仓库更新。
+
+适配平台：Claude Code / Codex / 豆包 / 任何支持 Skill 的 AI Agent。
+
+## 使用方法
+
+克隆本仓库（含子模块）：
+
+```bash
+git clone --recurse-submodules https://github.com/Li-Charles-One/NIUBI-skills-collection.git
+```
+
+已克隆但子模块为空？执行：
+
+```bash
+git submodule update --init --recursive
+```
+
+更新所有子模块到最新版本：
+
+```bash
+git submodule update --remote --merge
+```
+
+## Skills 列表
+
+| Skill | 功能 | 平台 | 链接 |
+|-------|------|------|------|
+| [dashiAI-ppt-skill](./skills/dashiAI-ppt-skill) | 专业 PPT 生成，12 套主题，1020 个版式，可导出真实可编辑 PPTX | Claude Code / Codex / 豆包 | [原仓库](https://github.com/chuspeeism/dashiAI-ppt-skill) |
+
+## 目录结构
+
+```
+NIUBI-skills-collection/
+└── skills/
+    └── dashiAI-ppt-skill/   ← git submodule
+```
+
+## 贡献
+
+发现好用的 Skill？欢迎提 Issue 推荐或直接 PR 添加子模块。
