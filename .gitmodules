@@ -1,6 +1,3 @@
 [submodule "skills/dashiAI-ppt-skill"]
 	path = skills/dashiAI-ppt-skill
 	url = https://github.com/chuspeeism/dashiAI-ppt-skill.git
-[submodule "skills/codegraph"]
-	path = skills/codegraph
-	url = https://github.com/colbymchenry/codegraph.git
