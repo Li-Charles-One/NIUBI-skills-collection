@@ -10,3 +10,6 @@
 [submodule "skills/context7"]
 	path = skills/context7
 	url = https://github.com/upstash/context7.git
+[submodule "skills/officecli"]
+	path = skills/officecli
+	url = https://github.com/iOfficeAI/OfficeCLI.git
