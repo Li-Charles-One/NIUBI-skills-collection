@@ -4,9 +4,6 @@
 [submodule "skills/tavily-skills"]
 	path = skills/tavily-skills
 	url = https://github.com/tavily-ai/skills.git
-[submodule "skills/firecrawl-skills"]
-	path = skills/firecrawl-skills
-	url = https://github.com/firecrawl/skills.git
 [submodule "skills/firecrawl-cli"]
 	path = skills/firecrawl-cli
 	url = https://github.com/firecrawl/cli.git
