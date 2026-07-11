@@ -30,6 +30,7 @@ git submodule update --remote --merge
 |-------|------|------|------|
 | [dashiAI-ppt-skill](./skills/dashiAI-ppt-skill) | 专业 PPT 生成，12 套主题，1020 个版式，可导出真实可编辑 PPTX | Claude Code / Codex / 豆包 | [原仓库](https://github.com/chuspeeism/dashiAI-ppt-skill) |
 | [aihot](./skills/aihot) | 中文 AI 资讯查询（AI HOT 日报/精选/热点），零配置 curl 公开 API | Claude Code / Codex / OpenCode 等 | [上游](https://github.com/KKKKhazix/khazix-skills/tree/main/aihot) |
+| [tavily-skills](./skills/tavily-skills) | Tavily 官方：网页搜索 / 抽取 / 爬取 / 地图 / 深度研究（配合 CLI `tvly`） | Claude Code / Codex / OpenCode 等 | [原仓库](https://github.com/tavily-ai/skills) |
 
 ## 目录结构
 
@@ -37,6 +38,7 @@ git submodule update --remote --merge
 NIUBI-skills-collection/
 └── skills/
     ├── dashiAI-ppt-skill/   ← git submodule
+    ├── tavily-skills/       ← git submodule（tavily-ai/skills）
     └── aihot/               ← 直接收录（上游无独立仓）
 ```
 
