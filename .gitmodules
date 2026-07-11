@@ -7,3 +7,6 @@
 [submodule "skills/firecrawl-cli"]
 	path = skills/firecrawl-cli
 	url = https://github.com/firecrawl/cli.git
+[submodule "skills/context7"]
+	path = skills/context7
+	url = https://github.com/upstash/context7.git

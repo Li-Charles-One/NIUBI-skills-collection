@@ -32,6 +32,7 @@ git submodule update --remote --merge
 | [aihot](./skills/aihot) | 中文 AI 资讯查询（AI HOT 日报/精选/热点），零配置 curl 公开 API | Claude Code / Codex / OpenCode 等 | [上游](https://github.com/KKKKhazix/khazix-skills/tree/main/aihot) |
 | [tavily-skills](./skills/tavily-skills) | Tavily 官方：网页搜索 / 抽取 / 爬取 / 地图 / 深度研究（配合 CLI `tvly`） | Claude Code / Codex / OpenCode 等 | [原仓库](https://github.com/tavily-ai/skills) |
 | [firecrawl-cli](./skills/firecrawl-cli) | Firecrawl 官方 CLI + Agent Skill：搜索 / 抓取 / 爬取 / 交互 | Claude Code / Codex / OpenCode 等 | [原仓库](https://github.com/firecrawl/cli) |
+| [context7](./skills/context7) | Context7 官方：最新库文档检索（主 skill：`find-docs`，配合 CLI `ctx7`） | Claude Code / Codex / OpenCode 等 | [原仓库](https://github.com/upstash/context7) |
 
 ## 目录结构
 
@@ -41,6 +42,7 @@ NIUBI-skills-collection/
     ├── dashiAI-ppt-skill/   ← git submodule
     ├── tavily-skills/       ← git submodule（tavily-ai/skills）
     ├── firecrawl-cli/       ← git submodule（firecrawl/cli）
+    ├── context7/            ← git submodule（upstash/context7；用 skills/find-docs）
     └── aihot/               ← 直接收录（上游无独立仓）
 ```
 
