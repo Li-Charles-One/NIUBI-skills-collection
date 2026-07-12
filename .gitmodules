@@ -13,3 +13,6 @@
 [submodule "skills/officecli"]
 	path = skills/officecli
 	url = https://github.com/iOfficeAI/OfficeCLI.git
+[submodule "skills/tikhub-agent-skill"]
+	path = skills/tikhub-agent-skill
+	url = https://github.com/MangouArt/tikhub-agent-skill.git

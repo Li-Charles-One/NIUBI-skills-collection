@@ -34,6 +34,7 @@ git submodule update --remote --merge
 | [firecrawl-cli](./skills/firecrawl-cli) | Firecrawl 官方 CLI + Agent Skill：搜索 / 抓取 / 爬取 / 交互 | Claude Code / Codex / OpenCode 等 | [原仓库](https://github.com/firecrawl/cli) |
 | [context7](./skills/context7) | Context7 官方：最新库文档检索（主 skill：`find-docs`，配合 CLI `ctx7`） | Claude Code / Codex / OpenCode 等 | [原仓库](https://github.com/upstash/context7) |
 | [officecli](./skills/officecli) | OfficeCLI 官方：读写编辑 Word / Excel / PowerPoint（CLI Skill） | Claude Code / Codex / OpenCode 等 | [原仓库](https://github.com/iOfficeAI/OfficeCLI) |
+| [tikhub-agent-skill](./skills/tikhub-agent-skill) | TikHub 单 skill：抖音/TikTok/小红书等 16+ 平台社媒数据（MCP，需 `TIKHUB_API_KEY`） | Claude Code / Codex / OpenCode 等 | [原仓库](https://github.com/MangouArt/tikhub-agent-skill) |
 
 ## 目录结构
 
@@ -45,6 +46,7 @@ NIUBI-skills-collection/
     ├── firecrawl-cli/       ← git submodule（firecrawl/cli）
     ├── context7/            ← git submodule（upstash/context7；用 skills/find-docs）
     ├── officecli/           ← git submodule（iOfficeAI/OfficeCLI）
+    ├── tikhub-agent-skill/  ← git submodule（MangouArt/tikhub-agent-skill）
     └── aihot/               ← 直接收录（上游无独立仓）
 ```
 
