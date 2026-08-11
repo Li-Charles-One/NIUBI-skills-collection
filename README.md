@@ -34,6 +34,7 @@ git submodule update --remote --merge
 | [context7](./skills/context7) | Context7 官方：最新库文档检索（主 skill：`find-docs`，配合 CLI `ctx7`） | Claude Code / Codex / OpenCode 等 | [原仓库](https://github.com/upstash/context7) |
 | [officecli](./skills/officecli) | OfficeCLI 官方：读写编辑 Word / Excel / PowerPoint（CLI Skill） | Claude Code / Codex / OpenCode 等 | [原仓库](https://github.com/iOfficeAI/OfficeCLI) |
 | [tikhub-agent-skill](./skills/tikhub-agent-skill) | TikHub 单 skill：抖音/TikTok/小红书等 16+ 平台社媒数据（MCP，需 `TIKHUB_API_KEY`） | Claude Code / Codex / OpenCode 等 | [原仓库](https://github.com/MangouArt/tikhub-agent-skill) |
+| [libtv-cli](./skills/libtv-cli) | LibTV 官方 CLI：画布 / 项目 / 节点 / 模型 / 素材 | Claude Code / Codex / OpenCode 等 | 直接收录（配合 `libtv` CLI） |
 
 ## 目录结构
 
@@ -45,7 +46,8 @@ NIUBI-skills-collection/
     ├── context7/            ← git submodule（upstash/context7；用 skills/find-docs）
     ├── officecli/           ← git submodule（iOfficeAI/OfficeCLI）
     ├── tikhub-agent-skill/  ← git submodule（MangouArt/tikhub-agent-skill）
-    └── aihot/               ← 直接收录（上游无独立仓）
+    ├── aihot/               ← 直接收录（上游无独立仓）
+    └── libtv-cli/           ← 直接收录（LibTV CLI skill）
 ```
 
 ## 贡献
