@@ -1,55 +1,130 @@
 # NIUBI Skills Collection
 
-精选优质 AI Agent Skill 合集，以 Git 子模块方式组织，方便追踪原仓库更新。
+精选第三方 AI Agent Skill 合集。只收录别人的官方 skill，不放自研包。
 
-适配平台：Claude Code / Codex / 豆包 / 任何支持 Skill 的 AI Agent。
+适配：Claude Code / Codex / 豆包 / OpenCode 等支持 `SKILL.md` 的 Agent。
+
+收录方式：
+
+- **git submodule**：上游有独立 Git 仓（或 CLI+skill 发在同一个仓）
+- **直接收录（vendor）**：上游只有 zip / CDN，没有可跟的 skill Git 仓
 
 ## 使用方法
-
-克隆本仓库（含子模块）：
 
 ```bash
 git clone --recurse-submodules https://github.com/Li-Charles-One/NIUBI-skills-collection.git
 ```
 
-已克隆但子模块为空？执行：
+已克隆但子模块为空：
 
 ```bash
 git submodule update --init --recursive
 ```
 
-更新所有子模块到最新版本：
+更新所有子模块：
 
 ```bash
 git submodule update --remote --merge
 ```
 
-## Skills 列表
+vendor 包（`aihot` / `libtv-cli` / `dreamina-cli`）需对照各节里的官方地址手动更新。
 
-| Skill | 功能 | 平台 | 链接 |
-|-------|------|------|------|
-| [aihot](./skills/aihot) | 中文 AI 资讯查询（AI HOT 日报/精选/热点），零配置 curl 公开 API | Claude Code / Codex / OpenCode 等 | [上游](https://github.com/KKKKhazix/khazix-skills/tree/main/aihot) |
-| [tavily-skills](./skills/tavily-skills) | Tavily 官方：网页搜索 / 抽取 / 爬取 / 地图 / 深度研究（配合 CLI `tvly`） | Claude Code / Codex / OpenCode 等 | [原仓库](https://github.com/tavily-ai/skills) |
-| [firecrawl-cli](./skills/firecrawl-cli) | Firecrawl 官方 CLI + Agent Skill：搜索 / 抓取 / 爬取 / 交互 | Claude Code / Codex / OpenCode 等 | [原仓库](https://github.com/firecrawl/cli) |
-| [context7](./skills/context7) | Context7 官方：最新库文档检索（主 skill：`find-docs`，配合 CLI `ctx7`） | Claude Code / Codex / OpenCode 等 | [原仓库](https://github.com/upstash/context7) |
-| [tikhub-agent-skill](./skills/tikhub-agent-skill) | TikHub 单 skill：抖音/TikTok/小红书等 16+ 平台社媒数据（MCP，需 `TIKHUB_API_KEY`） | Claude Code / Codex / OpenCode 等 | [原仓库](https://github.com/MangouArt/tikhub-agent-skill) |
-| [libtv-cli](./skills/libtv-cli) | LibTV 官方 CLI：画布 / 项目 / 节点 / 模型 / 素材 | Claude Code / Codex / OpenCode 等 | 直接收录（配合 `libtv` CLI） |
-| [quarkclouddrive](./skills/quarkclouddrive) | 夸克网盘官方：上传/下载、分享转存、搜索、相册整理、AI 助手 | Claude Code / Codex / OpenCode 等 | 直接收录（官方 Skill zip v1.0.14） |
+## `skills/` 每个文件夹
 
-## 目录结构
+### `skills/tavily-skills/`
+
+Tavily 官方 Agent Skills：网页搜索、抽取、爬取、站点地图、深度研究。
+
+- 收录：submodule → [tavily-ai/skills](https://github.com/tavily-ai/skills)
+- Agent 用：`skills/tavily-cli` 等子目录（仓内 `skills/`）
+- 官方 CLI（`tvly`）：`curl -fsSL https://cli.tavily.com/install.sh | bash`  
+  或 `uv tool install tavily-cli`；CLI 仓：[tavily-ai/tavily-cli](https://github.com/tavily-ai/tavily-cli)
+
+### `skills/firecrawl-cli/`
+
+Firecrawl 官方 CLI 仓（CLI 与 skill 发在一起）：搜索、抓取、爬取、交互。
+
+- 收录：submodule → [firecrawl/cli](https://github.com/firecrawl/cli)
+- Agent 用：`skills/firecrawl-cli/`（仓内 `skills/firecrawl-cli`）
+- 官方 CLI：`npm install -g firecrawl-cli`  
+  或 `curl -fsSL https://firecrawl.dev/install.sh | bash`
+
+### `skills/context7/`
+
+Context7 官方平台仓（文档检索 CLI/MCP 与 skill 发在一起）。
+
+- 收录：submodule → [upstash/context7](https://github.com/upstash/context7)
+- Agent 用：`skills/find-docs/`（仓内 `skills/find-docs`）
+- 官方 CLI（`ctx7`）：见上游 README / `npx ctx7`
+
+### `skills/tikhub-agent-skill/`
+
+TikHub 官方独立 skill：抖音 / TikTok / 小红书等社媒数据，走 MCP。
+
+- 收录：submodule → [MangouArt/tikhub-agent-skill](https://github.com/MangouArt/tikhub-agent-skill)
+- Agent 用：本目录根 `SKILL.md`
+- 无独立 CLI；需要环境变量 `TIKHUB_API_KEY`，MCP：`https://mcp.tikhub.io`
+
+### `skills/quarkclouddrive/`
+
+夸克网盘官方 skill：上传下载、分享转存、搜索、相册、AI 助手。
+
+- 收录：submodule → [quark-clouddrive/quarkclouddrive_offical](https://github.com/quark-clouddrive/quarkclouddrive_offical)
+- Agent 用：`skills/quarkclouddrive/`（仓内 `skills/quarkclouddrive`）
+- 官方 CLI：首次在 skill 目录执行 `bash scripts/install.sh`（随官方包提供，不要用 `quark-drive.cjs update` 升级文档）
+
+### `skills/aihot/`
+
+AIHOT 中文 AI 资讯查询 skill（日报 / 精选 / 热点）。零配置，匿名 HTTP API。
+
+- 收录：vendor（无独立 Git 仓）
+- 官方包：<https://aihot.virxact.com/aihot-skill/README.md>
+- GitHub 镜像：[KKKKhazix/khazix-skills/aihot](https://github.com/KKKKhazix/khazix-skills/tree/main/aihot)
+- Agent 用：本目录根 `SKILL.md`
+- 无 CLI
+
+### `skills/libtv-cli/`
+
+LibTV 官方 CLI skill：用 `libtv` 操作画布 / 项目 / 节点 / 模型 / 素材。
+
+- 收录：vendor（官方 skill zip，无对应 Git 仓）
+- Agent 用：本目录根 `SKILL.md`
+- 官方 CLI / skill zip 入口（权威，不要手拼版本路径）：  
+  `https://api2.liblib.art/api/www/landing-activities/getById?id=240`  
+  解析 `data.linkUrl` 里的 `install.*` 与 `skill`。  
+  一键脚本示例：`https://liblibai-web-static.liblib.cloud/cli/latest/install-libtv-cli.sh`  
+  详情见本目录 `scripts/install.md`。  
+  注意：[libtv-labs/libtv-skills](https://github.com/libtv-labs/libtv-skills) 是另一套 IM OpenAPI skill，不是本包。
+
+### `skills/dreamina-cli/`
+
+即梦（Dreamina）官方 CLI skill：登录、会话、积分、文生图/视频、任务查询与下载。
+
+- 收录：vendor（官方只随 CLI 发 `SKILL.md`，无 GitHub 仓）
+- Agent 用：本目录根 `SKILL.md`（来自官方安装器写入的副本）
+- 官方 CLI 安装：
+
+```bash
+curl -fsSL https://jimeng.jianying.com/cli | bash
+```
+
+安装后二进制一般在 `~/.local/bin/dreamina`（Windows 常见 `~/bin/dreamina.exe`），官方 skill 落到 `~/.dreamina_cli/dreamina/SKILL.md`。
+
+## 目录一览
 
 ```
 NIUBI-skills-collection/
 └── skills/
-    ├── tavily-skills/       ← git submodule（tavily-ai/skills）
-    ├── firecrawl-cli/       ← git submodule（firecrawl/cli）
-    ├── context7/            ← git submodule（upstash/context7；用 skills/find-docs）
-    ├── tikhub-agent-skill/  ← git submodule（MangouArt/tikhub-agent-skill）
-    ├── aihot/               ← 直接收录（上游无独立仓）
-    ├── libtv-cli/           ← 直接收录（LibTV CLI skill）
-    └── quarkclouddrive/     ← 直接收录（夸克网盘官方 Skill）
+    ├── tavily-skills/        submodule  tavily-ai/skills
+    ├── firecrawl-cli/        submodule  firecrawl/cli
+    ├── context7/             submodule  upstash/context7
+    ├── tikhub-agent-skill/   submodule  MangouArt/tikhub-agent-skill
+    ├── quarkclouddrive/      submodule  quark-clouddrive/quarkclouddrive_offical
+    ├── aihot/                vendor     AIHOT 官方 skill 包
+    ├── libtv-cli/            vendor     LibTV 官方 CLI skill zip
+    └── dreamina-cli/         vendor     即梦官方 CLI skill
 ```
 
 ## 贡献
 
-发现好用的 Skill？欢迎提 Issue 推荐或直接 PR 添加子模块。
+发现好用的官方 Skill？提 Issue 或 PR。有 Git 仓优先 submodule；只有 zip/CDN 再 vendor，并在本节写清官方安装地址。
