@@ -96,6 +96,20 @@ LibTV 官方 CLI skill：用 `libtv` 操作画布 / 项目 / 节点 / 模型 / �
   详情见本目录 `scripts/install.md`。  
   注意：[libtv-labs/libtv-skills](https://github.com/libtv-labs/libtv-skills) 是另一套 IM OpenAPI skill，不是本包。
 
+### `skills/lark-cli/`
+
+飞书 / Lark 官方 CLI 仓（`lark-cli` 与 20+ 个 `lark-*` skill 发在一起）：文档、云盘、IM、日历、多维表格、任务等。
+
+- 收录：submodule → [larksuite/cli](https://github.com/larksuite/cli)
+- Agent 用：仓内 `skills/lark-doc`、`skills/lark-im`、`skills/lark-shared` 等（不要把整个 CLI 源码当 skill 根目录加载）
+- 官方 CLI / skill 安装：
+
+```bash
+npx skills add larksuite/cli -y -g
+```
+
+或见上游 README：`git clone` + `make install`。认证：`lark-cli auth login`。
+
 ### `skills/dreamina-cli/`
 
 即梦（Dreamina）官方 CLI skill：登录、会话、积分、文生图/视频、任务查询与下载。
@@ -120,6 +134,7 @@ NIUBI-skills-collection/
     ├── context7/             submodule  upstash/context7
     ├── tikhub-agent-skill/   submodule  MangouArt/tikhub-agent-skill
     ├── quarkclouddrive/      submodule  quark-clouddrive/quarkclouddrive_offical
+    ├── lark-cli/             submodule  larksuite/cli
     ├── aihot/                vendor     AIHOT 官方 skill 包
     ├── libtv-cli/            vendor     LibTV 官方 CLI skill zip
     └── dreamina-cli/         vendor     即梦官方 CLI skill
