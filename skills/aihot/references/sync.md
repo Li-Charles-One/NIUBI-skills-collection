@@ -1,13 +1,13 @@
 # 当前全部精选同步
 
-只在用户明确要求拿到当前全部精选，或维护持久化精选私有副本时读取本文件。普通资讯问答不要使用 snapshot。本文件只说明技术同步；公开镜像、代理接口、数据转售或面向外部的商业产品须先取得书面授权，完整规则见 `https://aihot.virxact.com/terms`。
+只在用户明确要求拿到当前全部精选，或维护持久化精选私有副本时读取本文件。普通资讯问答不要使用 snapshot。本文件只说明技术同步；公开镜像、代理接口、数据转售或面向外部的商业产品须先取得书面授权，完整规则见 `https://aihot.news/terms`。
 
 ## 首次建立私有副本
 
-snapshot 是分页的，一轮 bootstrap 需要多次请求。当前约 2900 条：`fields=minimal` 约 1.08MB（gzip 247KB），`fields=default` 约 3.1MB（gzip 1.05MB），且只增不减。
+snapshot 是分页的，一轮 bootstrap 需要多次请求；集合会持续增长，不能假设一次响应能够取完。
 
 1. 选择字段模式：
-   - 只维护 id、标题、站内链接和分类：`fields=minimal`（默认首选，省四倍流量）。
+   - 只维护 id、标题、站内链接和分类：`fields=minimal`（默认首选，传输字段更少）。
    - 需要摘要或第三方原文链接：`fields=default`。
 2. 请求 `/api/v1/selected/snapshot?fields=<模式>&limit=500`。
 3. 累积本页 `items`；记下响应里的 `cursor`（逐页恒定）。

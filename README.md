@@ -45,7 +45,7 @@ Tavily 官方 Agent Skills：网页搜索、抽取、爬取、站点地图、深
 Firecrawl 官方 CLI 仓（CLI 与 skill 发在一起）：搜索、抓取、爬取、交互。
 
 - 收录：submodule → [firecrawl/cli](https://github.com/firecrawl/cli)
-- Agent 用：`skills/firecrawl-cli/`（仓内 `skills/firecrawl-cli`）
+- Agent 用：`skills/firecrawl/` 主 skill（仓内 `skills/firecrawl`），另有 11 个分工 skill：search / scrape / crawl / map / interact / monitor / download / parse / agent / developer-index / research-index
 - 官方 CLI：`npm install -g firecrawl-cli`  
   或 `curl -fsSL https://firecrawl.dev/install.sh | bash`
 
@@ -77,7 +77,7 @@ TikHub 官方独立 skill：抖音 / TikTok / 小红书等社媒数据，走 MCP
 
 AIHOT 中文 AI 资讯查询 skill（日报 / 精选 / 热点）。零配置，匿名 HTTP API。
 
-- 收录：vendor（无独立 Git 仓）
+- 收录：vendor（无独立 Git 仓，当前 v1.6.0）
 - 官方包：<https://aihot.virxact.com/aihot-skill/README.md>
 - GitHub 镜像：[KKKKhazix/khazix-skills/aihot](https://github.com/KKKKhazix/khazix-skills/tree/main/aihot)
 - Agent 用：本目录根 `SKILL.md`
