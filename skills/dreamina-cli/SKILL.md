@@ -56,10 +56,11 @@ At a high level:
 - Use `list_task` to review recent saved tasks, especially when you want to filter by status or task type.
 - Use `text2image` for prompt-only image generation, `image2image` for image-guided editing, and `image_upscale` for upscaling.
 - Use `text2video` for prompt-only video generation.
-- Use `image2video` when one main image is enough; if the user has multiple images for a coherent story, prefer `multiframe2video`.
+- Use `image2video` when one main image is enough.
 - Use `frames2video` for first-and-last-frame driven video generation.
-- Use `multiframe2video` for Dreamina's intelligent multi-frame flow: multiple images in, one coherent story video out.
-- Use `multimodal2video` for Dreamina's flagship video mode when the task needs all-around references across images, video, and audio; it supports the `seedance2.0` family. If the legacy name `ref2video` appears, trust `dreamina -h` for the current command surface.
+- For `seedance2.5` with `image2video` or `frames2video`, omit `--ratio`: reference-frame output follows the first frame and the CLI rejects an explicit ratio.
+- Use `multiframe2video` for Dreamina's fixed-model, image-only intelligent multi-frame flow: multiple images in, one coherent story video out. This command does not expose model selection.
+- Use `multimodal2video` for Dreamina's flagship video mode when the task needs all-around references across images, video, and audio, or when a Seedance 2.5 multi-image request needs model selection. If the legacy name `ref2video` appears, trust `dreamina -h` for the current command surface.
 
 For the exact flags and supported combinations, rely on each subcommand's `-h`.
 
@@ -82,23 +83,26 @@ Use the subcommand help to confirm:
 Additional guidance:
 
 - some commands do not expose model selection at all
-- some models, especially the `seedance2.0` family, can be capacity-constrained
-- if the user cares more about speed than maximum quality, do not default to `seedance2.0` unless they explicitly ask for it
+- runtime availability and queue capacity can change
+- if the user does not specify a model, preserve the subcommand's current default instead of overriding it
+- if the user expresses a speed or quality preference, inspect the current help and select a model only when that preference requires an explicit choice
 
-## How to judge submit success
+## How to judge submit acceptance and terminal success
 
 Do not rely on shell exit code alone.
 
-For async generation commands, treat a submit as successful only when:
+For async generation commands, `submit_id` plus `gen_status=querying` means only that the submission was accepted. It is not evidence that generation finished successfully.
 
-- `submit_id` is present
-- `gen_status` is `querying` or `success`
+Treat the task as terminally successful only when `gen_status=success`. If `gen_status=fail`, inspect `fail_reason` and reply proactively with the concrete reason.
 
-If `gen_status` is `fail`, inspect `fail_reason` and reply proactively with the concrete reason.
+Use `--poll=N` on a generation command to wait for up to N seconds for a terminal result. If the command still returns `querying` after that bounded wait:
+
+- save the `submit_id`
+- continue with `query_result --submit_id=<id>` until the task reaches `success` or `fail`
 
 ## Follow-up pattern for async tasks
 
-After a submit returns `querying`:
+After a submit returns `querying` without reaching a terminal result during `--poll=N`:
 
 1. Save the `submit_id`.
 2. Use `query_result --submit_id=<id>` for follow-up.
@@ -120,7 +124,6 @@ If you are running a test sweep, keep results in a machine-readable format so yo
 - Always close the loop when the login command finishes with a user-visible confirmation.
 - Prefer small, reviewable batches when running real generation tasks.
 - Keep a record of the command, arguments, `submit_id`, and final status for every paid test you run.
-- When the user cares about generation speed, do not default to the `seedance2.0` family unless they explicitly ask for it or clearly prioritize output quality.
 - If you are preparing a report, separate:
   - help-only inspection
   - submit-stage validation
