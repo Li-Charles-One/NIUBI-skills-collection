@@ -57,6 +57,14 @@ Context7 官方平台仓（文档检索 CLI/MCP 与 skill 发在一起）。
 - Agent 用：`skills/find-docs/`（仓内 `skills/find-docs`）
 - 官方 CLI（`ctx7`）：见上游 README / `npx ctx7`
 
+### `skills/officecli/`
+
+OfficeCLI 官方 CLI+skill：读写编辑 Word / Excel / PowerPoint，无需安装 Office。
+
+- 收录：submodule → [iOfficeAI/OfficeCLI](https://github.com/iOfficeAI/OfficeCLI)
+- Agent 用：本目录根 `SKILL.md`（另有仓内 `skills/` 下 11 个细分 skill：docx / xlsx / pptx 等）
+- 官方 CLI：`curl -fsSL https://d.officecli.ai/install.sh | bash`（Windows：`irm https://d.officecli.ai/install.ps1 | iex`）
+
 ### `skills/tikhub-agent-skill/`
 
 TikHub 官方独立 skill：抖音 / TikTok / 小红书等社媒数据，走 MCP。
@@ -132,6 +140,7 @@ NIUBI-skills-collection/
     ├── tavily-skills/        submodule  tavily-ai/skills
     ├── firecrawl-cli/        submodule  firecrawl/cli
     ├── context7/             submodule  upstash/context7
+    ├── officecli/            submodule  iOfficeAI/OfficeCLI
     ├── tikhub-agent-skill/   submodule  MangouArt/tikhub-agent-skill
     ├── quarkclouddrive/      submodule  quark-clouddrive/quarkclouddrive_offical
     ├── lark-cli/             submodule  larksuite/cli
