@@ -19,3 +19,6 @@
 [submodule "skills/officecli"]
 	path = skills/officecli
 	url = https://github.com/iOfficeAI/OfficeCLI.git
+[submodule "skills/hallmark"]
+	path = skills/hallmark
+	url = https://github.com/Nutlope/hallmark.git
