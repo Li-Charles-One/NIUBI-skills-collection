@@ -140,6 +140,14 @@ Hallmark 官方反 AI 烂俗味前端设计规范 Skill（Together AI / Nutlope 
 - Agent 用：`skills/hallmark/`（仓内 `skills/hallmark`，内含 `SKILL.md` 与 `references/`）
 - 官方安装方式：`npx skills add nutlope/hallmark`
 
+### `skills/sureforge/`
+
+SureForge 复杂任务质量管控 Skill（Da7-Tech 出品）：先调研再问、问完再规划、冻结版本全量验、独立 reviewer 审过才交付，防返工。
+
+- 收录：submodule → [Da7-Tech/SureForge](https://github.com/Da7-Tech/SureForge)
+- Agent 用：`skills/sureforge/`（仓内 `skills/sureforge`，内含 `SKILL.md` 与 `references/`、`assets/`）
+- 官方安装方式：`npx skills add Da7-Tech/SureForge`
+
 ## 目录一览
 
 ```
@@ -155,7 +163,8 @@ NIUBI-skills-collection/
     ├── aihot/                vendor     AIHOT 官方 skill 包
     ├── libtv-cli/            vendor     LibTV 官方 CLI skill zip
     ├── dreamina-cli/         vendor     即梦官方 CLI skill
-    └── hallmark/             submodule  Nutlope/hallmark
+    ├── hallmark/             submodule  Nutlope/hallmark
+    └── sureforge/            submodule  Da7-Tech/SureForge
 ```
 
 ## 贡献
