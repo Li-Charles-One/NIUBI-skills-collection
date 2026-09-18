@@ -124,14 +124,6 @@ curl -fsSL https://jimeng.jianying.com/cli | bash
 
 安装后二进制一般在 `~/.local/bin/dreamina`（Windows 常见 `~/bin/dreamina.exe`），官方 skill 落到 `~/.dreamina_cli/dreamina/SKILL.md`。
 
-### `skills/hallmark/`
-
-Hallmark 官方反 AI 烂俗味前端设计规范 Skill（Together AI / Nutlope 出品）：拒绝 AI 生成感、21 种艺术主题、57 道质量门禁、代码体检、重构与 DNA 逆向提取。
-
-- 收录：submodule → [Nutlope/hallmark](https://github.com/Nutlope/hallmark)
-- Agent 用：`skills/hallmark/`（仓内 `skills/hallmark`，内含 `SKILL.md` 与 `references/`）
-- 官方安装方式：`npx skills add nutlope/hallmark`
-
 ### `skills/sureforge/`
 
 SureForge 复杂任务质量管控 Skill（Da7-Tech 出品）：先调研再问、问完再规划、冻结版本全量验、独立 reviewer 审过才交付，防返工。
@@ -154,7 +146,6 @@ NIUBI-skills-collection/
     ├── aihot/                vendor     AIHOT 官方 skill 包
     ├── libtv-cli/            vendor     LibTV 官方 CLI skill zip
     ├── dreamina-cli/         vendor     即梦官方 CLI skill
-    ├── hallmark/             submodule  Nutlope/hallmark
     └── sureforge/            submodule  Da7-Tech/SureForge
 ```
 
