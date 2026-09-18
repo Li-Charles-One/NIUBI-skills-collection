@@ -65,14 +65,6 @@ OfficeCLI 官方 CLI+skill：读写编辑 Word / Excel / PowerPoint，无需安�
 - Agent 用：本目录根 `SKILL.md`（另有仓内 `skills/` 下 11 个细分 skill：docx / xlsx / pptx 等）
 - 官方 CLI：`curl -fsSL https://d.officecli.ai/install.sh | bash`（Windows：`irm https://d.officecli.ai/install.ps1 | iex`）
 
-### `skills/tikhub-agent-skill/`
-
-TikHub 官方独立 skill：抖音 / TikTok / 小红书等社媒数据，走 MCP。
-
-- 收录：submodule → [MangouArt/tikhub-agent-skill](https://github.com/MangouArt/tikhub-agent-skill)
-- Agent 用：本目录根 `SKILL.md`
-- 无独立 CLI；需要环境变量 `TIKHUB_API_KEY`，MCP：`https://mcp.tikhub.io`
-
 ### `skills/quarkclouddrive/`
 
 夸克网盘官方 skill：上传下载、分享转存、搜索、相册、AI 助手。
@@ -157,7 +149,6 @@ NIUBI-skills-collection/
     ├── firecrawl-cli/        submodule  firecrawl/cli
     ├── context7/             submodule  upstash/context7
     ├── officecli/            submodule  iOfficeAI/OfficeCLI
-    ├── tikhub-agent-skill/   submodule  MangouArt/tikhub-agent-skill
     ├── quarkclouddrive/      submodule  quark-clouddrive/quarkclouddrive_offical
     ├── lark-cli/             submodule  larksuite/cli
     ├── aihot/                vendor     AIHOT 官方 skill 包

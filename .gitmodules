@@ -7,9 +7,6 @@
 [submodule "skills/context7"]
 	path = skills/context7
 	url = https://github.com/upstash/context7.git
-[submodule "skills/tikhub-agent-skill"]
-	path = skills/tikhub-agent-skill
-	url = https://github.com/MangouArt/tikhub-agent-skill.git
 [submodule "skills/quarkclouddrive"]
 	path = skills/quarkclouddrive
 	url = https://github.com/quark-clouddrive/quarkclouddrive_offical.git
