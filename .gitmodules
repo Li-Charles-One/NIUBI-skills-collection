@@ -19,3 +19,6 @@
 [submodule "skills/sureforge"]
 	path = skills/sureforge
 	url = https://github.com/Da7-Tech/SureForge.git
+[submodule "skills/remotion-skills"]
+	path = skills/remotion-skills
+	url = https://github.com/remotion-dev/skills.git

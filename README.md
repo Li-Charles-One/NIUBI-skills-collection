@@ -132,6 +132,14 @@ SureForge 复杂任务质量管控 Skill（Da7-Tech 出品）：先调研再问�
 - Agent 用：`skills/sureforge/`（仓内 `skills/sureforge`，内含 `SKILL.md` 与 `references/`、`assets/`）
 - 官方安装方式：`npx skills add Da7-Tech/SureForge`
 
+### `skills/remotion-skills/`
+
+Remotion 官方 Agent Skills：React 视频编程最佳实践、组件与动画规范、Studio 预览与交互、地图动画、字幕、多媒体处理、SaaS 集成与官方文档检索。
+
+- 收录：submodule → [remotion-dev/skills](https://github.com/remotion-dev/skills)
+- Agent 用：`skills/remotion-best-practices/` 主入口（仓内 `skills/remotion-best-practices`，已内嵌全部子模块引用；另有 11 个独立细分 skill：`remotion-create` / `remotion-markup` / `remotion-studio` / `remotion-render` / `remotion-maps` / `remotion-captions` / `remotion-saas` / `remotion-interactivity` / `remotion-docs` / `remotion-upgrade` / `remotion-multimedia`）
+- 官方安装方式：`npx skills add remotion-dev/skills` 或 `gh skill install remotion-dev/skills`
+
 ## 目录一览
 
 ```
@@ -146,7 +154,8 @@ NIUBI-skills-collection/
     ├── aihot/                vendor     AIHOT 官方 skill 包
     ├── libtv-cli/            vendor     LibTV 官方 CLI skill zip
     ├── dreamina-cli/         vendor     即梦官方 CLI skill
-    └── sureforge/            submodule  Da7-Tech/SureForge
+    ├── sureforge/            submodule  Da7-Tech/SureForge
+    └── remotion-skills/      submodule  remotion-dev/skills
 ```
 
 ## 贡献
