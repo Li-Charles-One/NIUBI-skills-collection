@@ -126,6 +126,14 @@ Remotion 官方 Agent Skills：React 视频编程最佳实践、组件与动画�
 - Agent 用：`skills/remotion-best-practices/` 主入口（仓内 `skills/remotion-best-practices`，已内嵌全部子模块引用；另有 11 个独立细分 skill：`remotion-create` / `remotion-markup` / `remotion-studio` / `remotion-render` / `remotion-maps` / `remotion-captions` / `remotion-saas` / `remotion-interactivity` / `remotion-docs` / `remotion-upgrade` / `remotion-multimedia`）
 - 官方安装方式：`npx skills add remotion-dev/skills` 或 `gh skill install remotion-dev/skills`
 
+### `skills/video-shotcraft/`
+
+video-shotcraft 电影感产品宣传片 Skill（Vincentwei1021 出品）：基于 Remotion、真实页面抓取、124 张镜头配方卡（150 个镜头）、Ink Press 模板、音乐卡点与音效设计制作产品视频，支持导出剪映专业版草稿。
+
+- 收录：submodule → [Vincentwei1021/video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft)
+- Agent 用：本目录根 `SKILL.md`（内含 `references/`、`demos/`、`template/`、`jianying-export/` 等）
+- 官方安装方式：`npx skills add Vincentwei1021/video-shotcraft`
+
 ## 目录一览
 
 ```
@@ -140,7 +148,8 @@ NIUBI-skills-collection/
     ├── libtv-cli/            vendor     LibTV 官方 CLI skill zip
     ├── dreamina-cli/         vendor     即梦官方 CLI skill
     ├── sureforge/            submodule  Da7-Tech/SureForge
-    └── remotion-skills/      submodule  remotion-dev/skills
+    ├── remotion-skills/      submodule  remotion-dev/skills
+    └── video-shotcraft/      submodule  Vincentwei1021/video-shotcraft
 ```
 
 ## 贡献

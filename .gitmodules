@@ -19,3 +19,6 @@
 [submodule "skills/remotion-skills"]
 	path = skills/remotion-skills
 	url = https://github.com/remotion-dev/skills.git
+[submodule "skills/video-shotcraft"]
+	path = skills/video-shotcraft
+	url = https://github.com/Vincentwei1021/video-shotcraft.git
