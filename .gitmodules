@@ -10,9 +10,6 @@
 [submodule "skills/quarkclouddrive"]
 	path = skills/quarkclouddrive
 	url = https://github.com/quark-clouddrive/quarkclouddrive_offical.git
-[submodule "skills/lark-cli"]
-	path = skills/lark-cli
-	url = https://github.com/larksuite/cli.git
 [submodule "skills/officecli"]
 	path = skills/officecli
 	url = https://github.com/iOfficeAI/OfficeCLI.git
