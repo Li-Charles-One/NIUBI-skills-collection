@@ -2,7 +2,7 @@
 
 **覆盖**：把多个上游 `nodeKey` 经 NDJSON 汇到一个下游节点的左侧；再把这种 fan-in 层层嵌套成 DAG，完整走通「多张图 → 汇总图 → 视频段 → 完片」这种真实链路。
 
-**前置条件**：同 [examples/README.md 的通用前置条件](../README.md#通用前置条件)。
+**前置条件**：同 [examples/README.md 的通用前置条件](../examples/README.md#通用前置条件)。
 
 ## 简单嵌套（两三个上游汇到一个下游）
 

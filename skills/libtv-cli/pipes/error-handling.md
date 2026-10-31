@@ -2,7 +2,7 @@
 
 **覆盖**：管道里任一段 `create` 失败时，如何让整条链**立即停住、且不被静默吞掉**，避免画布上留下一堆"一半成功"的节点。
 
-**前置条件**：同 [examples/README.md 的通用前置条件](../README.md#通用前置条件)。
+**前置条件**：同 [examples/README.md 的通用前置条件](../examples/README.md#通用前置条件)。
 
 ## 推荐默认：`set -euo pipefail` + `&&`
 
@@ -82,9 +82,9 @@ libtv node list | jq -r '.nodes[] | select(.name | startswith("剧·")) | .nodeK
   | while read -r k; do libtv node delete "$k"; done
 ```
 
-| 现象                                              | 原因 / 修复                                                                                                              |
-| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| 管道下游报 `invalid json on line N`               | 上游里混了并行 `&`，或上游把非 JSON 文本误打到 stdout。改串行；并检查上游是否被 `;` 串错。                               |
-| `set -e` 下整条脚本静默跑完，但画布只有前几个节点 | 少写了 `-o pipefail`；管道某段失败被右端成功掩盖。补 `set -o pipefail`。                                                 |
-| 偶发"成功但下游说找不到上游"                      | 上游用 `>/dev/null` 把 NDJSON 丢了，下游自然读不到 key。去掉那处 `>/dev/null`。                                          |
-| 401 / AUTH\_\* / PROJECT_NOT_BOUND                | 凭据或项目绑定问题，见 [commands/login.md](../../commands/login.md) / [commands/project.md](../../commands/project.md)。 |
+| 现象                                              | 原因 / 修复                                                                                                        |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| 管道下游报 `invalid json on line N`               | 上游里混了并行 `&`，或上游把非 JSON 文本误打到 stdout。改串行；并检查上游是否被 `;` 串错。                         |
+| `set -e` 下整条脚本静默跑完，但画布只有前几个节点 | 少写了 `-o pipefail`；管道某段失败被右端成功掩盖。补 `set -o pipefail`。                                           |
+| 偶发"成功但下游说找不到上游"                      | 上游用 `>/dev/null` 把 NDJSON 丢了，下游自然读不到 key。去掉那处 `>/dev/null`。                                    |
+| 401 / AUTH\_\* / PROJECT_NOT_BOUND                | 凭据或项目绑定问题，见 [commands/login.md](../commands/login.md) / [commands/project.md](../commands/project.md)。 |

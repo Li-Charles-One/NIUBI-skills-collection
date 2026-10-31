@@ -30,4 +30,20 @@ libtv login web --open                                   # ✅ 重新登录
 libtv node list                                          # ❌ PROJECT_NOT_BOUND
 libtv project use <项目UUID>                             # ✅ 绑定后再跑
 libtv -p <项目UUID> node list                           # ✅ 或临时覆盖
+libtv status | jq '.binding'                             # 排查：看当前目录到底绑了什么
+
+# case 7: --attachment 与 --link 同时给 —— 被拒绝（互斥）
+libtv node "镜头B" --attachment ./剧本.pdf --link https://x  # ❌
+libtv node "镜头B" --attachment none --link https://x       # ✅ 先清掉另一个
+
+# case 8: -u 写了白名单外的键 —— 被拒绝（报错里带正确写法）
+libtv node "镜头A" -u scriptRowHiddenUuid=abc            # ❌ 由画布维护，不可手写
+# 各类型可写键见 node-types/README.md 的「-u 可写字段」
+
+# case 9: Seedance 合规前置校验不通过 —— 不提交生成，退出码非 0
+libtv node "镜头A" --run                                 # ❌ stderr 列出不合格的图片节点
+# 换一张满足要求的参考图（300–6000px、宽高比 0.4–2.5、<30MB）后重跑
+
+# case 10: 生成超时（status=4）—— 按失败处理，退出码非 0
+libtv node "镜头A" --run || echo "生成失败或超时，见 stderr"
 ```

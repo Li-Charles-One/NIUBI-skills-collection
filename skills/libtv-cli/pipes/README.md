@@ -6,10 +6,10 @@
 
 ### stdout / stderr
 
-| 流     | 内容                                                                                                |
-| ------ | --------------------------------------------------------------------------------------------------- |
-| stdout | **业务结果 JSON / NDJSON**（可直接 `jq` 或接管道）。**只有**接到管道时才保证是单行 JSON（NDJSON）。 |
-| stderr | **进度、上传百分比、生成轮询**等，常见前缀 `[run]` / `[run-group]` / `[upload]`。                   |
+| 流     | 内容                                                                                                             |
+| ------ | ---------------------------------------------------------------------------------------------------------------- |
+| stdout | **业务结果 JSON / NDJSON**（可直接 `jq` 或接管道）。**只有**接到管道时才保证是单行 JSON（NDJSON）。              |
+| stderr | **进度、生成轮询**等，常见前缀 `[run]` / `[run-group]`；上传百分比仅在 `--verbose` 时打印（`[libtv][upload]`）。 |
 
 > 脚本里若把 stderr 丢掉（如 `2>/dev/null`），看不到失败原因；一般保留 stderr 或单独重定向到日志文件。
 
@@ -25,7 +25,7 @@
 
 ### `-p` / `-g` 与 stdin 的关系
 
-- `stdin` 里的 `nodeKey` 用作"上游节点引用"，**不会**覆盖 `-p` / `-g`；当前项目 / 分组仍由 `.libtv/project.json`（[`project use`](../../commands/project.md) / [`group use`](../../commands/group.md)）或 `-p` / `-g` 本身决定。
+- `stdin` 里的 `nodeKey` 用作"上游节点引用"，**不会**覆盖 `-p` / `-g`；当前项目 / 分组仍由 `.libtv/project.json`（[`project use`](../commands/project.md) / [`group use`](../commands/group.md)）或 `-p` / `-g` 本身决定。
 - 下游（如 `libtv node`）从 stdin 收到的 key，默认接到 `<node>` 的**左侧入边**，语义同 `--left`。
 
 ## 三个核心 case

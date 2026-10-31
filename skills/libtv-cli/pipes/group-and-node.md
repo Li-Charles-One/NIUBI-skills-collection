@@ -2,7 +2,7 @@
 
 **覆盖**：用 `libtv group create` + `libtv group use` 绑好 `groupNodeKey`；然后在组内串 `libtv node create`，用管道把多个上游节点挂进下游，并用 `libtv group … --run` 整组触发。
 
-**前置条件**：同 [examples/README.md 的通用前置条件](../README.md#通用前置条件)；已 `libtv project use <项目UUID>`。
+**前置条件**：同 [examples/README.md 的通用前置条件](../examples/README.md#通用前置条件)；已 `libtv project use <项目UUID>`。
 
 ## 建组 + 绑定
 
@@ -19,7 +19,7 @@ libtv group use 首集分镜
 - `libtv group create` 的 stdout 接到管道时吐 NDJSON（含 `newNodeKey`）；不接管道时为普通 JSON。
 - `libtv group use <组>` 需要传**分组名 / id**（无 stdin / `-r` 形式），把对应 `groupNodeKey` 写入当前目录 `.libtv/project.json`。
 - 绑定后，后续 `libtv node` 未显式传 `-g` / `-p` 时**默认落在该组内**。
-- 解除绑定：`libtv group unuse`。完整 `group` 子命令见 [../../commands/group.md](../../commands/group.md)。
+- 解除绑定：`libtv group unuse`。完整 `group` 子命令见 [../../commands/group.md](../commands/group.md)。
 
 ## 组内用管道批量建节点
 

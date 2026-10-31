@@ -1,6 +1,8 @@
 # `libtv script` — 脚本节点相关命令
 
-面向画布上 **`script`** 节点的**跨行批处理**类操作（目前仅「生成分镜图组」）。项目 / 分组范围与 [`libtv node`](./node.md) 一致：通过 **`-p`** / **`-g`** 或 [`libtv project use`](./project.md) / [`libtv group use`](./group.md) 的目录绑定。脚本节点的生成器参数 / 属性语义见 [../node-types/script.md](../node-types/script.md)；管道（NDJSON）、stdout/stderr 约定见 [../examples/pipes/README.md](../examples/pipes/README.md)。
+面向画布上 **`script`** 节点的**跨行批处理**类操作（目前仅「生成分镜图组」）。画布 / 分组范围与 [`node`](./node.md) 一致：通过 **`-p`** / **`-g`** 指定（缺省来源见 [../concepts/context.md](../concepts/context.md)）。
+
+脚本节点的生成器参数 / 属性语义见 [../node-types/script.md](../node-types/script.md)。
 
 > 创建 / 修改 / 连线脚本节点本身请用 [`libtv node`](./node.md) 并配合 `-t script`；对单个脚本节点触发文本生成也走 [`libtv node "<脚本>" --run`](./node.md)，**不**经本命令。
 
@@ -9,8 +11,6 @@
 | 子命令                               | 作用                                                                                                                        |
 | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
 | **`libtv script storyboard <node>`** | 对齐画布「生成分镜」：校验目标为脚本节点；读已保存的 `imageGenConfig`（可用 `-s` 覆盖）→ 在右侧创建**分镜图组**并逐张生成。 |
-
-完整子命令与选项以 **`libtv script --help`** / **`libtv script storyboard --help`** 为准。
 
 ### `libtv script storyboard <node>`
 
@@ -22,13 +22,11 @@
 
 **选项**
 
-| 选项                      | 可重复 | 说明                                                                                                                                                                                                                                                                     |
-| ------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `-p, --project <project>` | 否     | 画布项目 UUID；缺省读当前目录 `.libtv/project.json` 的 `projectUuid`（需已 [`libtv project use`](./project.md)）。                                                                                                                                                       |
-| `-g, --group <group>`     | 否     | 父级**普通分组**（id 或展示名）：限定 `<node>` 的解析范围只在该组 `childNodeIds` 内；未传时若已 [`libtv group use`](./group.md) 则自动套用。新建的**分镜图组**与其子节点会按画布规则落在脚本节点**右侧**，与此父组的从属关系由画布决定。                                 |
-| `-s, --set <key=value>`   | 是     | **覆盖**本次分镜图用的 `imageGenConfig`（模型与生成参数）。规则与 [`libtv node create --set`](./node.md) 完全一致：首个 `=` 拆键值；值可为 `true` / `false` / 数字 / JSON；`settings` 与节点已有值做**浅合并**。未传 `model` 时按 supportModels `scriptImage` 默认首项。 |
-
-**stdin**：不读取。
+| 选项                      | 可重复 | 说明                                                                                                                                                                                                                                                          |
+| ------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-p, --project <project>` | 否     | 画布项目 UUID；缺省来源见 [../concepts/context.md](../concepts/context.md)。                                                                                                                                                                                  |
+| `-g, --group <group>`     | 否     | 父级**普通分组**（id 或展示名）：限定 `<node>` 的解析范围只在该组 `childNodeIds` 内；缺省来源见 [../concepts/context.md](../concepts/context.md)。新建的**分镜图组**与其子节点会按画布规则落在脚本节点**右侧**，与此父组的从属关系由画布决定。                |
+| `-s, --set <key=value>`   | 是     | **覆盖**本次分镜图用的 `imageGenConfig`（模型与生成参数）。规则与 [`libtv node create --set`](./node.md) 完全一致：首个 `=` 拆键值；值可为 `true` / `false` / 数字 / JSON；与节点已有值做**浅合并**。未传 `model` 时按 supportModels `scriptImage` 默认首项。 |
 
 **行为摘要**
 
@@ -41,10 +39,10 @@
 
 **输出**
 
-| 流     | 内容                                                                                                                                                                                                                                                                                                    |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| stdout | 成功时为 JSON，字段包含 `groupNodeKey` / `scriptNodeKey` / `imageNodeKeys[]` / `group`（分组节点详情，`data.type=group`、`data.storyboardGroupType=image`） / `imageGenerationRan`（布尔）/ `imageRuns[]`（每个分镜图子节点的 `{ nodeKey, ok, taskId?, status? }`；`status=2` 成功、`status=3` 失败）。 |
-| stderr | 进度与错误：`[storyboard image-run] node=… task=… status=… progress=…%`。                                                                                                                                                                                                                               |
+| 流     | 内容                                                                                                                                                                                                                                                                                   |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| stdout | 字段含 `groupNodeKey` / `scriptNodeKey` / `imageNodeKeys[]` / `group`（分组节点详情，`data.type=group`、`data.storyboardGroupType=image`） / `imageGenerationRan`（布尔）/ `imageRuns[]`（每个分镜图子节点的 `{ nodeKey, ok, taskId?, status? }`；`status=2` 成功、`status=3` 失败）。 |
+| stderr | 进度与错误：`[storyboard image-run] node=… task=… status=… progress=…%`。                                                                                                                                                                                                              |
 
 ## 示例
 
@@ -60,10 +58,10 @@ libtv script storyboard "剧本"
 # case 3: 覆盖本次分镜图模型与比例（不改脚本节点已有 imageGenConfig 的其它键）
 libtv script storyboard "剧本" -s "model=Seedream 4.0" -s aspectRatio=16:9
 
-# case 4: 显式项目；同时通过 settings 覆盖部分基础设置（浅合并到已有 settings）
+# case 4: 显式项目；同时覆盖部分生成参数（逐键写入，浅合并到已有配置）
 libtv script storyboard "剧本" \
   -p 11111111-2222-3333-4444-555555555555 \
-  -s 'settings={"ratio":"16:9"}'
+  -s ratio=16:9
 
 # case 5: 常见错误自检
 #   - 目标不是 script：报错「<node> 非脚本节点」。

@@ -2,13 +2,13 @@
 
 ## 整体节点用途
 
-**视频合成节点**：把若干 `video` / `audio` 等上游素材按时间线组合成一条视频。**核心编辑对象在 `data` 顶层**（而非 `params`）——**`cropRange` / `clipTimelineData` / `saveToNodeOnComplete` / `url` / `poster`** 等。本节点**不**走「`model` + `tool_spec`」schema 校验，CLI 对 `params` 做 **JSON patch 式浅合并**；`--run` 走视频合成任务链路，与 `text` / `image` 等选 `modelKey` 拉 schema 的流程不同。
+**视频合成节点**：把若干 `video` / `audio` 等上游素材按时间线组合成一条视频。**核心编辑对象在 `data` 顶层**（而非 `params`）——**`cropRange` / `clipTimelineData` / `saveToNodeOnComplete` / `url` / `poster`** 等。本节点**不**走「`model` + `tool_spec`」schema 校验，对 `params` 做 **JSON patch 式浅合并**；`--run` 走视频合成任务链路，与 `text` / `image` 等选 `modelKey` 拉 schema 的流程不同。
 
-**通用约定**：[README.md](./README.md)。其它节点涉及的 **`schema` 各块释义**：[../model-schema/schema.md](../model-schema/schema.md)。
+**通用约定**：[README.md](./README.md)。其它节点涉及的 **`schema` 各块释义**：[../model-schema/README.md](../model-schema/README.md)。
 
 ## 案例
 
-见 [../examples/node-types/video-clip.md](../examples/node-types/video-clip.md)。
+见[示例](../SKILL.md)。
 
 ## 常见生成器参数（`-s / --set`）
 
@@ -31,7 +31,7 @@
 
 时间线持久化数据；实际内容在 `clips[]`。
 
-> **来源 id 由 CLI 自动维护**：`videoSourceNodeIds` / `audioSourceNodeIds` 无需手填——`--left*` 连线 / 断线时，CLI 会按当前入边自动重算并写回（以画布连线为准，即使手写也会被覆盖）。下表不再列出这两个字段。
+> **来源 id 自动维护**：`videoSourceNodeIds` / `audioSourceNodeIds` 无需手填——`--left*` 连线 / 断线时，会按当前入边自动重算并写回（以画布连线为准，即使手写也会被覆盖）。下表不再列出这两个字段。
 
 | 字段               | 类型                              | 必填 | 说明                                                                |
 | ------------------ | --------------------------------- | ---- | ------------------------------------------------------------------- |
@@ -60,8 +60,8 @@
 ## 特殊用法
 
 - **不在 `libtv model` 的节点类型范围**：`libtv model search --type video-clip` 会被拒绝——`video-clip` 不在可选 `--type` 枚举（`text` / `image` / `video` / `audio` / `script` / `storyboard`）内，见 [../commands/model.md](../commands/model.md)。
-- **上游素材**：先用 [`libtv upload`](../commands/upload.md) 或 `libtv node create -t video/audio ...` 建资源节点，再用 `libtv node --left/--left-add` 或管道连到本节点的左侧。连线后 `clipTimelineData.videoSourceNodeIds` / `audioSourceNodeIds` 由 CLI 自动写回，**无需手填**。
+- **上游素材**：先用 [`upload`](../commands/upload.md) 或 `node create -t video/audio ...` 建资源节点，再用 `node --left/--left-add` 连到本节点的左侧。连线后 `clipTimelineData.videoSourceNodeIds` / `audioSourceNodeIds` 会自动写回，**无需手填**。
 - **两种合成路径**：
   - **简单首尾拼接**：只连线、不写 `clipTimelineData`，直接 `--run` 即按入边顺序把各上游视频/音频首尾相接合成。
   - **精细剪辑**：需要裁剪 / 分割 / 多片段 / 调音量时，用 `-u clipTimelineData={...}` 写 `clips[]`（来源 id 仍由连线自动维护，写了也会被覆盖）。
-- **`--run`**：在 `data` 顶层时间线数据就位后触发合成，任务进度与结果约定见 [../examples/pipes/README.md](../examples/pipes/README.md)。
+- **`--run`**：在 `data` 顶层时间线数据就位后触发合成，任务进度与结果约定见[使用说明](../SKILL.md)。

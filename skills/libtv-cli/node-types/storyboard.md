@@ -2,24 +2,23 @@
 
 ## 整体节点用途
 
-**分镜表节点**：画布上以「行 + 列 + 视图模式」组织镜头信息；与 [`script`](./script.md) **共用一套生成器数据结构**——`data.type` 恒为 **`script`**，React Flow `type` 为 **`storyboard`**。因此 CLI 改参、校验、`--run` 与脚本节点同一套路：`model` 仍须落在 **`scriptText`** support 里；[`libtv model search --type storyboard`](../commands/model.md) 返回的是 `scriptText` + `scriptImage` 两组模型。
+**分镜表节点**：画布上以「行 + 列 + 视图模式」组织镜头信息；与 [`script`](./script.md) **共用一套生成器数据结构**——`data.type` 恒为 **`script`**，React Flow `type` 为 **`storyboard`**。因此改参、校验、`--run` 与脚本节点同一套路：`model` 仍须落在 **`scriptText`** support 里；[`libtv model search --type storyboard`](../commands/model.md) 返回的是 `scriptText` + `scriptImage` 两组模型。
 
-**通用约定**：[README.md](./README.md)。**`schema` 各块含义**：[../model-schema/schema.md](../model-schema/schema.md)（与 [script.md](./script.md) 一致）。
+**通用约定**：[README.md](./README.md)。**`schema` 各块含义**：[../model-schema/README.md](../model-schema/README.md)（与 [script.md](./script.md) 一致）。
 
 ## 案例
 
-见 [../examples/node-types/storyboard.md](../examples/node-types/storyboard.md)。
+见[示例](../SKILL.md)。
 
 ## 常见生成器参数（`-s / --set`）
 
-与 [script.md](./script.md) 的「常见生成器参数（`-s / --set`）」一致：**`prompt`**、**`model`**、**`count`**、**`scene`**、**`settings` / `advancedSettings`**。
+与 [script.md](./script.md) 的「常见生成器参数（`-s / --set`）」一致：**`prompt`**、**`model`**、**`count`**、**`scene`**，以及该 `modelKey` 的其余可调字段（一律 `-s 字段名=值` 写入）。
 
-- 若 `model` 来自 **`scriptText`** 列表，多数模型 schema **无**分桶字段。
-- 若使用 **`scriptImage`** 里的图片模型，则分桶字段与 [image.md](./image.md) 的图片 `settings` / `advancedSettings` 一致，`--set` 可拍平逻辑字段名。
+- 若使用 **`scriptImage`** 里的图片模型，可调字段与 [image.md](./image.md) 一致。
 
 ## 常见属性参数（`-u / --update`）
 
-与 [script.md](./script.md) 的「常见属性参数（`-u / --update`）」一致（两者共用 `ScriptNodeDataCli`，`data.type` 恒为 `script`）：`rows` / `title` / `viewMode` / `shotColumns` / `activeViewId` / `sourceType` / `scriptModel` / `linkedImageGroupId` / `imageGenConfig`。
+与 [script.md](./script.md) 的「常见属性参数（`-u / --update`）」一致（两者共用 `ScriptNodeDataCli`，`data.type` 恒为 `script`）：`rows` / `title` / `viewMode` / `shotColumns` / `views` / `activeViewId` / `sourceType` / `scriptModel` / `imageGenConfig` / `nodeWidth` / `nodeHeight`（`linkedImageGroupId` 由画布自动写入，不可 `-u`）。
 
 ## 特殊用法
 

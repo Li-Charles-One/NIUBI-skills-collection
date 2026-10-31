@@ -10,7 +10,7 @@
 2. 在**画布所在工作目录**执行过 [`libtv project use <画布UUID>`](../commands/project.md)；`libtv project list` 可查 UUID。未绑定时每条命令可显式加 `-p <UUID>`。画布归属的**项目（工作区）**操作见 [commands/workspace.md](../commands/workspace.md)。
 3. 需要限定普通分组时执行 [`libtv group use <分组>`](../commands/group.md)；临时覆盖用 `-g/--group`。
 
-语法速查：`-s`（`data.params`）vs `-u`（`data` 顶层）见 [../node-types/README.md](../node-types/README.md)；管道（NDJSON）与 stdout/stderr 规则见 [pipes/README.md](./pipes/README.md)。
+语法速查：`-s`（`data.params`）vs `-u`（`data` 顶层）见 [../node-types/README.md](../node-types/README.md)；管道（NDJSON）与 stdout/stderr 规则见 [pipes/README.md](../pipes/README.md)。
 
 ## workflow/ — 工作流串联
 
@@ -40,9 +40,9 @@
 
 ## pipes/ — 管道与嵌套用法
 
-| 场景                                                           | 文件                                                 |
-| -------------------------------------------------------------- | ---------------------------------------------------- |
-| NDJSON / stdout-stderr 概念 + 三 case 索引                     | [pipes/README.md](./pipes/README.md)                 |
-| 普通嵌套 → 复杂 DAG（含旁路、`>/dev/null` 抑制、已有节点回放） | [pipes/nested-dag.md](./pipes/nested-dag.md)         |
-| 中途报错的退出策略（`&&` / `pipefail` / 并行 `&` 反例 / 清理） | [pipes/error-handling.md](./pipes/error-handling.md) |
-| `group` 与 `node` 的嵌套（建组绑定、组内串管道、终剪汇入）     | [pipes/group-and-node.md](./pipes/group-and-node.md) |
+| 场景                                                           | 文件                                                  |
+| -------------------------------------------------------------- | ----------------------------------------------------- |
+| NDJSON / stdout-stderr 概念 + 三 case 索引                     | [pipes/README.md](../pipes/README.md)                 |
+| 普通嵌套 → 复杂 DAG（含旁路、`>/dev/null` 抑制、已有节点回放） | [pipes/nested-dag.md](../pipes/nested-dag.md)         |
+| 中途报错的退出策略（`&&` / `pipefail` / 并行 `&` 反例 / 清理） | [pipes/error-handling.md](../pipes/error-handling.md) |
+| `group` 与 `node` 的嵌套（建组绑定、组内串管道、终剪汇入）     | [pipes/group-and-node.md](../pipes/group-and-node.md) |

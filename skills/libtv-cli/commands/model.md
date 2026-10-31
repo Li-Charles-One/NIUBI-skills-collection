@@ -1,78 +1,57 @@
-# `libtv model` — 生成模型检索与 schema
+# `libtv model` — 查模型与 schema
 
-在写 [`libtv node -s model=…`](./node.md) / [`libtv node create -s model=…`](./node.md) 之前，用 **`search`** 在 supportModels 中找候选；用**默认子命令** `libtv model <name...>` 对 **`modelKey` / `modelName`** 全等解析，拉取完整 **`tool_spec`** schema（与画布侧 `getModelSchema` 同源）。
+检索可用生成模型、查看其完整 schema，便于写 [`node -s model=…`](./node.md)。
 
-数据来源：在线 supportModels 配置（带本地缓存）；拿不到时行为以实现为准。**`schema` 各块含义**（`properties` / `config` / `rules` / `modeType`）：[../model-schema/schema.md](../model-schema/schema.md)。
-
-本命令调接口，**需已登录**（[`libtv login`](./login.md)）。
+`schema` 各块含义见 [../model-schema/README.md](../model-schema/README.md)。
 
 ## 子命令
 
-| 子命令                              | 作用                                                                                   |
-| ----------------------------------- | -------------------------------------------------------------------------------------- |
-| **`libtv model search [name...]`**  | 在 supportModels 内检索候选；可选 `--type` 限定节点类型；无 `name` 时需配合 `--type`。 |
-| **（默认）`libtv model <name...>`** | 对 `modelKey`/`modelName` **trim 后全等** 匹配并输出完整 schema JSON。                 |
+| 子命令                              | 作用                                                                            |
+| ----------------------------------- | ------------------------------------------------------------------------------- |
+| **`libtv model search [name...]`**  | 按关键词搜可用模型；可加 `--type` 限定节点类型（不给关键词时必须带 `--type`）。 |
+| **（默认）`libtv model <name...>`** | 按模型名 / key 精确查一个模型，输出它的完整 schema。                            |
 
 ### `libtv model search [name...]`
 
-用法骨架：`libtv model search [name...] [flags]`
+按名字模糊搜模型。`[name...]` 是关键词（多词自动拼成一段，不区分大小写）。
 
-**位置参数**
+- 只给关键词：在所有模型里搜。
+- 加 **`-t, --type <类型>`**：只在该节点类型下搜，类型取 `text` / `image` / `video` / `audio` / `script` / `storyboard`（`script` / `storyboard` 会一并搜出对应的文本与配图模型）。
+- 不给关键词时**必须**带 `--type`，相当于「列出该类型下所有模型」。
 
-- **`[name...]`**（可省略）：检索关键词；shell 里多词会拼成一段再检索。**不能**与不传 `--type` 同时省略，否则会报错。
+| 选项                     | 必填 | 说明                                                                                                        |
+| ------------------------ | ---- | ----------------------------------------------------------------------------------------------------------- |
+| `-t, --type <node-type>` | 否   | 限定节点类型；不给关键词时必填。取值见上。                                                                  |
+| `--all`                  | 否   | 不按平台过滤。默认只列**网页端可见**的模型（与网页模型列表一致）；加上后列出全量，包含仅 App 端开放的模型。 |
 
-**选项**
-
-| 选项                     | 必填 | 说明                                                                                                                                                                                   |
-| ------------------------ | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-t, --type <node-type>` | 否   | 画布节点类型枚举，取值：`text` / `image` / `video` / `audio` / `script` / `storyboard`。`script` / `storyboard` 会同时扫 `scriptText` 与 `scriptImage` 两类模态。**不支持** `custom`。 |
-| `--help`                 | 否   | 打印该子命令帮助。                                                                                                                                                                     |
-
-**匹配规则**（在已选模态列表内，`query` 为 trim 后整段关键词）：
-
-| 输入                             | 行为                     | `matchKind`     |
-| -------------------------------- | ------------------------ | --------------- |
-| `modelKey` 与 `query` 全等       | 只返回这些命中           | `modelKey`      |
-| `modelName` 不区分大小写子串包含 | 退而求其次的子串匹配     | `modelName`     |
-| 仅 `--type`、无 `name`           | 返回该类型下**全部**条目 | `all` 或 `none` |
-| 无 `--type` 且无 `name`          | 报错（必须至少传一个）   | —               |
-
-**输出**：stdout JSON，含 `query` / `matchKind` / `matches`；有 `--type` 时还含 `nodeType`。
+**输出**：匹配到的模型列表（含模型名、key 等）。
 
 ### `libtv model <name...>`（默认子命令）
 
-用法骨架：`libtv model <name...>`
-
-**位置参数**
-
-- **`<name...>`**（必填）：模型 **id（`modelKey`）** 或**展示名（`modelName`）**；多词会拼成一段。
-
-**行为**：对 supportModels + `/api/tool_spec/list` 的记录做 `modelKey` / `modelName` **trim 后全等**解析。
-
-| 情况                                                | 结果                                                                                                                    |
-| --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| 唯一命中                                            | stdout JSON，含 `nameOrId` / `modelName` / `modelKey` / `toolKey` / `modality` / `schema`（完整字段、类型、可选值等）。 |
-| supportModels 阶段**全等匹配到多个不同 `modelKey`** | 返回 **409** 类错误，需改用唯一 `modelKey`。                                                                            |
+按**模型名或 key** 精确查一个模型（多词自动拼成一段；含空格用引号），输出它的完整 schema（字段、类型、可选值等）。名字对不上、或一个名字命中多个模型时会报错——后者改用唯一的 `modelKey`。
 
 ## 示例
 
 ```bash
-# case 1: 按关键词检索（不分大小写子串匹配）
-libtv model search qwen
+# 按关键词搜（不区分大小写）
+libtv model search seedance
 
-# case 2: 缩小到 image 模态下的 qwen
-libtv model search --type image qwen
+# 只在 video 类型下搜
+libtv model search --type video seedance
 
-# case 3: 列出某节点类型下所有可用模型（无关键字；这是 `list` 的正确写法）
+# 列出某类型下全部模型（不给关键词，必须带 --type）
 libtv model search --type image
-libtv model search --type script   # 会同时覆盖 scriptText 与 scriptImage
+libtv model search --type script   # 同时覆盖文本与配图模型
 
-# case 4: 全字匹配 modelKey，拉出完整 schema（常用于在写 -s/--set 之前参考）
-libtv model qwen-3-vl-flash
+# 默认只列网页端可见的模型；要连仅 App 端开放的一起看，加 --all
+libtv model search --type video --all
 
-# case 5: 展示名含空格时用引号
-libtv model "某展示名含空格"
+# 精确查一个模型，拉出完整 schema（写 -s 前参考）
+libtv model lib-image-2
 
-# case 6: 串接 jq 速查某字段（以 settings 列表为例）
-libtv model nebula-ultra | jq '.schema.config.settings'
+# 名字含空格用引号
+libtv model "Seedance 2.0 VIP"
+
+# 配合 jq 速查可调字段
+libtv model "Lib Navo Pro" | jq '.schema.properties | keys'
 ```
