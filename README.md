@@ -27,7 +27,7 @@ git submodule update --init --recursive
 git submodule update --remote --merge
 ```
 
-vendor 包（`aihot` / `libtv-cli` / `dreamina-cli`）需对照各节里的官方地址手动更新。
+vendor 包（`aihot` / `dreamina-cli`）需对照各节里的官方地址手动更新。
 
 ## `skills/` 每个文件夹
 
@@ -82,19 +82,6 @@ AIHOT 中文 AI 资讯查询 skill（日报 / 精选 / 热点）。零配置，�
 - GitHub 镜像：[KKKKhazix/khazix-skills/aihot](https://github.com/KKKKhazix/khazix-skills/tree/main/aihot)
 - Agent 用：本目录根 `SKILL.md`
 - 无 CLI
-
-### `skills/libtv-cli/`
-
-LibTV 官方 CLI skill：用 `libtv` 操作画布 / 项目 / 节点 / 模型 / 素材。
-
-- 收录：vendor（官方 skill zip，无对应 Git 仓）
-- Agent 用：本目录根 `SKILL.md`
-- 官方 CLI / skill zip 入口（权威，不要手拼版本路径）：  
-  `https://api2.liblib.art/api/www/landing-activities/getById?id=240`  
-  解析 `data.linkUrl` 里的 `install.*` 与 `skill`。  
-  一键脚本示例：`https://liblibai-web-static.liblib.cloud/cli/latest/install-libtv-cli.sh`  
-  详情见本目录 `scripts/install.md`。  
-  注意：[libtv-labs/libtv-skills](https://github.com/libtv-labs/libtv-skills) 是另一套 IM OpenAPI skill，不是本包。
 
 ### `skills/dreamina-cli/`
 
@@ -154,7 +141,6 @@ NIUBI-skills-collection/
     ├── officecli/            submodule  iOfficeAI/OfficeCLI
     ├── quarkclouddrive/      submodule  quark-clouddrive/quarkclouddrive_offical
     ├── aihot/                vendor     AIHOT 官方 skill 包
-    ├── libtv-cli/            vendor     LibTV 官方 CLI skill zip
     ├── dreamina-cli/         vendor     即梦官方 CLI skill
     ├── sureforge/            submodule  Da7-Tech/SureForge
     ├── remotion-skills/      submodule  remotion-dev/skills
