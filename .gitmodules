@@ -22,3 +22,6 @@
 [submodule "skills/video-shotcraft"]
 	path = skills/video-shotcraft
 	url = https://github.com/Vincentwei1021/video-shotcraft.git
+[submodule "skills/mole"]
+	path = skills/mole
+	url = https://github.com/tw93/Mole.git

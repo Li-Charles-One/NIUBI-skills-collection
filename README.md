@@ -134,6 +134,15 @@ video-shotcraft 电影感产品宣传片 Skill（Vincentwei1021 出品）：基�
 - Agent 用：本目录根 `SKILL.md`（内含 `references/`、`demos/`、`template/`、`jianying-export/` 等）
 - 官方安装方式：`npx skills add Vincentwei1021/video-shotcraft`
 
+### `skills/mole/`
+
+Mole 官方 CLI+skill（tw93 出品）：Mac/PC 磁盘占用分析、缓存清理（先 `--dry-run` 预览）、应用卸载、系统健康与清理历史。
+
+- 收录：submodule → [tw93/Mole](https://github.com/tw93/Mole)
+- Agent 用：`.agents/skills/mole/`（仓内隐藏目录，内含 `SKILL.md` 与 `references/`）
+- 官方 CLI（`mo`）：`brew install mole`
+- 官方安装方式：`npx skills add tw93/Mole`
+
 ## 目录一览
 
 ```
@@ -149,7 +158,8 @@ NIUBI-skills-collection/
     ├── dreamina-cli/         vendor     即梦官方 CLI skill
     ├── sureforge/            submodule  Da7-Tech/SureForge
     ├── remotion-skills/      submodule  remotion-dev/skills
-    └── video-shotcraft/      submodule  Vincentwei1021/video-shotcraft
+    ├── video-shotcraft/      submodule  Vincentwei1021/video-shotcraft
+    └── mole/                 submodule  tw93/Mole
 ```
 
 ## 贡献
